@@ -1,0 +1,8 @@
+ccxt==3.0.29
+eth_abi==4.0.0
+loguru==0.6.0
+pandas==1.5.3
+python_dateutil==2.8.2
+Requests==2.31.0
+web3==6.0.0
+termcolor==2.3.0
