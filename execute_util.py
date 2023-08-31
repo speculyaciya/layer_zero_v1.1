@@ -63,12 +63,6 @@ def form_activity_list(row) -> list:
 
     if len(form_STARGATE_chains(row)) != 0:
         activity_list.append(c.STARGATE)
-    # if int(row[c.STARGATE_BSC]) != 0:
-    #     activity_list.append(c.STARGATE_BSC)
-    # if int(row[c.STARGATE_ARBITRUM]) != 0:
-    #     activity_list.append(c.STARGATE_ARBITRUM)
-    # if int(row[c.STARGATE_OPTIMISM]) != 0:
-    #     activity_list.append(c.STARGATE_OPTIMISM)
 
     return activity_list
 
@@ -393,7 +387,7 @@ def execute_STARGATE(data_csv, row, index):
         from_chain = random.choice(form_STARGATE_chains(row))
         if (from_chain == 'Avalanche' or from_chain == 'Polygon'):
             token = 'USDT'
-        elif (from_chain == 'Fantom' or from_chain == 'Oprimism' or from_chain == 'Arbitrum'):
+        elif (from_chain == 'Fantom' or from_chain == 'Oprimism' or from_chain == 'Arbitrum', from_chain == 'Base'):
             token = 'USDC'
         logger.info(f'{prelog} | Первый раз {c.STARGATE}, будет SWAP {from_chain} для получения {token}')
         try:
@@ -1098,15 +1092,6 @@ def execute_activity(activity:str, data_csv, row, index)->bool:
     try:
         if activity == c.STARGATE:
             result = execute_STARGATE(data_csv, row=row, index=index)
-        
-        # if activity == c.STARGATE_BSC:
-        #     result = execute_STARGATE_single_chain(data_csv=data_csv, row=row, index=index, chain='BSC')
-        
-        # if activity == c.STARGATE_ARBITRUM:
-        #     result = execute_STARGATE_single_chain(data_csv=data_csv, row=row, index=index, chain='Arbitrum')
-
-        # if activity == c.STARGATE_OPTIMISM:
-        #     result = execute_STARGATE_single_chain(data_csv=data_csv, row=row, index=index, chain='Optimism')
         
         if activity == c.SWAP_TOKEN:
             result = execute_SWAP_TOKEN(data_csv=data_csv, row=row, index=index)

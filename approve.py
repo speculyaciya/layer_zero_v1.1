@@ -97,13 +97,3 @@ def approve(name, proxy, private_key, amount, from_chain, token, max_gas):
             return False, f'Недостаточно средств для Approve кол-во {amount}, {from_chain}', str(Ex)
         logger.error(f'{name} | {address} | {log_name} | Ошибка при Approve кол-во {amount}, {from_chain}')
         return False, f'Ошибка при Approve кол-во {amount}, {from_chain}', str(Ex)
-
-# eth_approve(
-#     name='M1',
-#     proxy='',
-#     private_key='5359d916198f94b509edfe5c527f51dad20422c5d2b1a34fe61582103073451f',
-#     from_chain='Ethereum',
-#     amount=0.001,
-#     token='WETH',
-#     max_gas=0.00079,
-# )

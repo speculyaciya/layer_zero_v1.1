@@ -193,17 +193,22 @@ def stargate(name, proxy, private_key, amount, from_chain, to_chain, from_token,
                 continue
             
             try:
-                gas = contractRouter.functions.swap(
-                    int(CHAINID_TO),                                                      # destination chainId
-                    TOKEN_POOLID_FROM,                                                    # source poolId
-                    TOKEN_POOLID_TO,                                                      # destination poolId
-                    address,                                                              # refund address. extra gas (if any) is returned to this address
-                    amountIn ,                                                            # quantity to swap
-                    amountOutMin,                                                         # the min qty you would accept on the destination                                                           # 
-                    (0, 0, '0x0000000000000000000000000000000000000001'),
-                    address,                                                              # the address to send the tokens to on the destination
-                    '0x'
-                    ).estimate_gas({'from': address, 'value':value, 'nonce': nonce, })
+                if from_chain == 'Arbitrum':
+                    gas = 3000000
+                elif from_chain == 'BSC':
+                    gas = 1000000
+                else:
+                    gas = contractRouter.functions.swap(
+                        int(CHAINID_TO),                                                      # destination chainId
+                        TOKEN_POOLID_FROM,                                                    # source poolId
+                        TOKEN_POOLID_TO,                                                      # destination poolId
+                        address,                                                              # refund address. extra gas (if any) is returned to this address
+                        amountIn ,                                                            # quantity to swap
+                        amountOutMin,                                                         # the min qty you would accept on the destination                                                           # 
+                        (0, 0, '0x0000000000000000000000000000000000000001'),
+                        address,                                                              # the address to send the tokens to on the destination
+                        '0x'
+                        ).estimate_gas({'from': address, 'value':value, 'nonce': nonce, })
             except Exception as Ex:
                 logger.warning(f'{name} | {address} | {log_name} | Ошибка при получении газа \n {str(Ex)}')
                 if "LayerZero: not enough native for fees" in str(Ex):

@@ -1,6 +1,5 @@
 WAIT_TIME = range(1, 2) # Ожидание перед след дейсвием бота
-RATIO_STARGATE_SINGLE = 0.5  # Кэф. для single сетей, сколько отправлять STARGATE в другую сеть
-MIN_STABLE_FOUND = 2.0 # Минимальное значение стейблов, которое будет проверять на кошельке перед свапом, чтобы не тригерился на всякие копейки
+MIN_STABLE_FOUND = 0.3 # Минимальное значение стейблов, которое будет проверять на кошельке перед свапом, чтобы не тригерился на всякие копейки
 
 # Все аквтиности
 NO_ACTIVITY       = 'NO ACTIVITY'
@@ -31,4 +30,7 @@ STARGATE_CHAIN_LIST = [
     'BSC',
     'Arbitrum',
     'Optimism',
+    # 'BASE'
 ]
+
+headers = { "Authorization": "Bearer [ВАШ API-КЛЮЧ БЕЗ ЭТИХ СКОБОК ВОКРУГ!]", "accept": "application/json" } # API вашего 1inch для свапов получать его здесь - https://portal.1inch.dev/dashboard
