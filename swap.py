@@ -152,6 +152,7 @@ def swap_token(name, proxy, private_key, from_chain:str, token, amount, max_gas=
 
         transaction['chainId']   = int(CHAIN_ID_FROM)
         transaction['nonce']     = w3_from.eth.get_transaction_count(address)
+        transaction['from']      = Web3.to_checksum_address(transaction['from'])
         transaction['to']        = Web3.to_checksum_address(transaction['to'])
         transaction['gasPrice']  = int(transaction['gasPrice'])
         transaction['gas']       = int(int(transaction['gas']))
